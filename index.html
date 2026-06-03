@@ -4,120 +4,121 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pixel Brick Grid</title>
-  <meta name="description" content="Pixel Brick Grid is a colorful 8x8 block puzzle game with 50 rising levels, star ratings, special objectives, and power-ups.">
+  <meta name="description" content="Pixel Brick Grid is a colorful level-based block puzzle game with themed worlds, line clears, crystal goals, star ratings, and power-ups.">
   <style>
     :root {
       color-scheme: light;
-      --ink: #1f2a37;
-      --muted: #657789;
-      --line: rgba(72, 112, 137, 0.18);
-      --sky: #ddecf3;
-      --sky-deep: #c7e2ef;
-      --card: rgba(255, 255, 255, 0.82);
-      --blue: #4ca3ca;
-      --green: #72ce92;
-      --yellow: #f4c750;
-      --red: #e95b67;
+      --ink: #202a3a;
+      --muted: #647386;
+      --line: rgba(32, 42, 58, 0.14);
+      --panel: rgba(255, 255, 255, 0.86);
+      --blue: #4aa9d8;
+      --gold: #f6bd42;
+      --pink: #e7539a;
+      --green: #64d58c;
+      --shadow: rgba(20, 37, 61, 0.18);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: ui-rounded, "Avenir Next", Avenir, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 15% 4%, rgba(184, 220, 235, 0.8) 0 18rem, transparent 18.1rem),
-        radial-gradient(circle at 92% 72%, rgba(231, 221, 187, 0.7) 0 16rem, transparent 16.1rem),
-        linear-gradient(180deg, #e8f4f8, var(--sky));
+        radial-gradient(circle at 10% 0%, rgba(84, 169, 216, 0.28), transparent 26rem),
+        radial-gradient(circle at 92% 16%, rgba(231, 83, 154, 0.20), transparent 24rem),
+        linear-gradient(180deg, #eef8ff 0%, #fff2f7 48%, #f5fbff 100%);
       min-height: 100vh;
-    }
-
-    .wrap {
-      width: min(1100px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      padding: 56px 0 28px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 52px;
-    }
-
-    .brand {
-      font-size: 22px;
-      font-weight: 800;
-    }
-
-    .links {
-      display: flex;
-      gap: 18px;
-      font-weight: 700;
     }
 
     a {
       color: var(--blue);
       text-decoration: none;
+      font-weight: 800;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 34px 0 56px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0 42px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .links {
+      display: flex;
+      gap: 18px;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
-      gap: 54px;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+      gap: 56px;
       align-items: center;
-      padding-bottom: 48px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(48px, 8vw, 88px);
+      font-size: clamp(48px, 8vw, 86px);
       line-height: 0.95;
       letter-spacing: 0;
     }
 
     .lead {
-      margin: 24px 0 34px;
+      margin: 24px 0 32px;
       color: var(--muted);
       font-size: clamp(20px, 3vw, 30px);
       line-height: 1.35;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 58px;
-      padding: 0 28px;
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .badges li {
+      padding: 9px 12px;
       border-radius: 8px;
-      background: var(--blue);
-      color: white;
-      font-weight: 800;
-      box-shadow: 0 7px 0 rgba(41, 86, 108, 0.28);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 900;
+      box-shadow: 0 5px 0 rgba(32, 42, 58, 0.08);
     }
 
     .phone {
-      position: relative;
-      margin: 0 auto;
       width: min(100%, 360px);
       aspect-ratio: 1125 / 2436;
       border-radius: 34px;
       overflow: hidden;
-      box-shadow: 0 24px 70px rgba(45, 71, 84, 0.24);
-      border: 8px solid rgba(255, 255, 255, 0.78);
       background: white;
+      border: 8px solid rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 70px var(--shadow);
+      margin: 0 auto;
     }
 
-    .phone img {
+    .phone img,
+    .shots img {
       display: block;
       width: 100%;
       height: 100%;
@@ -125,7 +126,17 @@
     }
 
     main {
-      padding: 44px 0 64px;
+      padding: 10px 0 64px;
+    }
+
+    section {
+      margin-top: 54px;
+    }
+
+    h2 {
+      margin: 0 0 24px;
+      font-size: clamp(30px, 5vw, 48px);
+      letter-spacing: 0;
     }
 
     .features {
@@ -135,33 +146,27 @@
     }
 
     .feature {
-      background: var(--card);
-      border: 1px solid rgba(105, 139, 158, 0.18);
+      background: var(--panel);
+      border: 1px solid var(--line);
       border-radius: 8px;
       padding: 24px;
-      box-shadow: 0 8px 0 rgba(55, 84, 100, 0.08);
+      box-shadow: 0 10px 0 rgba(32, 42, 58, 0.08);
     }
 
-    .tile {
-      width: 38px;
-      height: 38px;
-      border-radius: 6px;
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
       margin-bottom: 18px;
-      box-shadow: inset 0 6px 0 rgba(255, 255, 255, 0.24), 0 4px 0 rgba(31, 42, 55, 0.12);
+      box-shadow: inset 0 8px 0 rgba(255,255,255,0.28), 0 5px 0 rgba(32,42,58,0.14);
     }
 
-    .feature:nth-child(1) .tile { background: var(--blue); }
-    .feature:nth-child(2) .tile { background: var(--green); }
-    .feature:nth-child(3) .tile { background: var(--yellow); }
-    .feature:nth-child(4) .tile { background: var(--red); }
-    .feature:nth-child(5) .tile { background: var(--blue); }
-    .feature:nth-child(6) .tile { background: var(--green); }
-
-    h2 {
-      margin: 0 0 28px;
-      font-size: clamp(30px, 5vw, 48px);
-      letter-spacing: 0;
-    }
+    .feature:nth-child(1) .mark { background: var(--blue); }
+    .feature:nth-child(2) .mark { background: var(--gold); }
+    .feature:nth-child(3) .mark { background: var(--pink); }
+    .feature:nth-child(4) .mark { background: var(--green); }
+    .feature:nth-child(5) .mark { background: #8562f3; }
+    .feature:nth-child(6) .mark { background: #ff7a38; }
 
     h3 {
       margin: 0 0 10px;
@@ -174,34 +179,35 @@
       color: var(--muted);
       line-height: 1.6;
       font-size: 17px;
-      font-weight: 600;
+      font-weight: 650;
     }
 
-    .screens {
-      margin-top: 54px;
+    .shots {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .screens img {
-      width: 100%;
+    .shot {
+      aspect-ratio: 1125 / 2436;
+      overflow: hidden;
       border-radius: 8px;
-      border: 1px solid rgba(105, 139, 158, 0.18);
-      box-shadow: 0 12px 28px rgba(45, 71, 84, 0.16);
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 32px var(--shadow);
+      background: white;
     }
 
     footer {
-      padding: 30px 0 44px;
       border-top: 1px solid var(--line);
+      padding: 30px 0 44px;
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 860px) {
       .hero,
       .features,
-      .screens {
+      .shots {
         grid-template-columns: 1fr;
       }
 
@@ -218,69 +224,79 @@
       <nav aria-label="Main navigation">
         <div class="brand">Pixel Brick Grid</div>
         <div class="links">
+          <a href="#features">Features</a>
+          <a href="#screens">Screenshots</a>
           <a href="privacy.html">Privacy</a>
-          <a href="mailto:support@example.com">Support</a>
         </div>
       </nav>
-      <section class="hero">
+
+      <div class="hero">
         <div>
           <h1>Pixel Brick Grid</h1>
-          <p class="lead">Clear lines. Collect crystals. Solve colorful pixel-brick puzzles across 50 rising challenges.</p>
-          <a class="button" href="#features">Explore the Game</a>
+          <p class="lead">Clear lines, collect crystals, and solve colorful block puzzle levels across four themed worlds.</p>
+          <ul class="badges" aria-label="Game highlights">
+            <li>50 Levels</li>
+            <li>8x8 Board</li>
+            <li>Four Themes</li>
+            <li>Bomb Tool</li>
+          </ul>
         </div>
-        <div class="phone" aria-label="Pixel Brick Grid gameplay screenshot">
-          <img src="AppStoreAssets/screenshots/iphone_6_1_1125x2436/03-start-level.png" alt="Pixel Brick Grid gameplay board">
+        <div class="phone" aria-label="Pixel Brick Grid screenshot">
+          <img src="AppStoreAssets/screenshots/iphone_6_1_1125x2436/03-jelly-level.png" alt="Jelly Bay gameplay in Pixel Brick Grid">
         </div>
-      </section>
+      </div>
     </div>
   </header>
 
-  <main id="features">
-    <div class="wrap">
-      <h2>Simple to Start, Smart to Master</h2>
-      <section class="features" aria-label="Game features">
+  <main class="wrap">
+    <section id="features">
+      <h2>Play With Purpose</h2>
+      <div class="features">
         <article class="feature">
-          <div class="tile"></div>
-          <h3>8x8 Puzzle Board</h3>
-          <p>Drag colorful brick shapes onto the board and clear complete rows or columns.</p>
+          <div class="mark" aria-hidden="true"></div>
+          <h3>Clear Lines</h3>
+          <p>Place pieces on an 8x8 board and complete full rows or columns to open space and score.</p>
         </article>
         <article class="feature">
-          <div class="tile"></div>
-          <h3>50 Levels</h3>
-          <p>Progress through rising targets, star ratings, and board layouts that ask for better planning.</p>
+          <div class="mark" aria-hidden="true"></div>
+          <h3>Chase Goals</h3>
+          <p>Each level has a target score, star rating, and rising challenge curve built for quick puzzle sessions.</p>
         </article>
         <article class="feature">
-          <div class="tile"></div>
-          <h3>Special Goals</h3>
-          <p>Collect crystals, break locked bricks, and cover blueprint pads to complete later stages.</p>
+          <div class="mark" aria-hidden="true"></div>
+          <h3>Collect Crystals</h3>
+          <p>Later stages add crystals, locked bricks, and blueprint pads so every board asks for a plan.</p>
         </article>
         <article class="feature">
-          <div class="tile"></div>
-          <h3>Power-Up Choices</h3>
-          <p>Use a 3x3 Bomb or Refresh the candidate pool when the board becomes tight.</p>
+          <div class="mark" aria-hidden="true"></div>
+          <h3>Use Tools</h3>
+          <p>Spend a Bomb to blast a 3x3 area or refresh the candidate pool when the board gets tight.</p>
         </article>
         <article class="feature">
-          <div class="tile"></div>
+          <div class="mark" aria-hidden="true"></div>
+          <h3>Four Worlds</h3>
+          <p>Play through Neon Lab, Crystal Vault, Brick Factory, and Jelly Bay with matching art and effects.</p>
+        </article>
+        <article class="feature">
+          <div class="mark" aria-hidden="true"></div>
           <h3>Local Progress</h3>
-          <p>Unlock levels, save stars, and continue from your latest challenge without an account.</p>
+          <p>Unlock levels, save stars, and toggle music locally. No account is required to play.</p>
         </article>
-        <article class="feature">
-          <div class="tile"></div>
-          <h3>Pixel-Brick Style</h3>
-          <p>Soft backgrounds, crisp bricks, and playful blocks give every clear a clean tactile feel.</p>
-        </article>
-      </section>
+      </div>
+    </section>
 
-      <section class="screens" aria-label="Screenshots">
-        <img src="AppStoreAssets/screenshots/iphone_6_1_1125x2436/01-main-menu.png" alt="Main menu">
-        <img src="AppStoreAssets/screenshots/iphone_6_1_1125x2436/02-level-select.png" alt="Level select">
-        <img src="AppStoreAssets/screenshots/iphone_6_1_1125x2436/06-level-clear.png" alt="Level clear">
-      </section>
-    </div>
+    <section id="screens">
+      <h2>Screenshots</h2>
+      <div class="shots">
+        <div class="shot"><img src="AppStoreAssets/screenshots/iphone_6_1_1125x2436/01-main-menu.png" alt="Main menu"></div>
+        <div class="shot"><img src="AppStoreAssets/screenshots/iphone_6_1_1125x2436/02-level-select.png" alt="Level selection"></div>
+        <div class="shot"><img src="AppStoreAssets/screenshots/iphone_6_1_1125x2436/04-line-clear.png" alt="Line clear effect"></div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <div class="wrap">Copyright 2026 Pixel Brick Grid. All rights reserved.</div>
+    <div class="wrap">Pixel Brick Grid. Single-player block puzzle game.</div>
   </footer>
 </body>
 </html>
